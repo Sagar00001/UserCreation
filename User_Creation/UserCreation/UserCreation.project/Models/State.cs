@@ -10,7 +10,10 @@ namespace UserCreation.project.Models
     {
         [Key]
         [Required]
+        public int StateID { get; set; }
+
         public string StateName { get; set; }
+
         public ICollection<City> City { get; set; }
     }
 }

@@ -20,33 +20,53 @@ namespace UserCreation.project.Migrations
 
             modelBuilder.Entity("UserCreation.project.Models.City", b =>
                 {
-                    b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CityID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
-                    b.HasKey("CityName");
+                    b.Property<string>("CityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StateID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CityID");
+
+                    b.HasIndex("StateID");
 
                     b.ToTable("City");
                 });
 
             modelBuilder.Entity("UserCreation.project.Models.State", b =>
                 {
-                    b.Property<string>("StateName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("StateID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
-                    b.HasKey("StateName");
+                    b.Property<string>("StateName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StateID");
 
                     b.ToTable("State");
                 });
 
             modelBuilder.Entity("UserCreation.project.Models.User", b =>
                 {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -61,7 +81,7 @@ namespace UserCreation.project.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Email");
+                    b.HasKey("ID");
 
                     b.ToTable("User");
                 });
@@ -70,7 +90,7 @@ namespace UserCreation.project.Migrations
                 {
                     b.HasOne("UserCreation.project.Models.State", "State")
                         .WithMany("City")
-                        .HasForeignKey("CityName")
+                        .HasForeignKey("StateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

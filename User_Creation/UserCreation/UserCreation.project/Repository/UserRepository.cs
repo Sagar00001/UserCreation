@@ -26,12 +26,12 @@ namespace UserCreation.project.Repository
             return 0;
         }
 
-        public async Task DeleteUser(string email)
+        public async Task DeleteUser(int id)
         {
             if (usercontext != null)
             {
                 
-                var user = await usercontext.User.FirstOrDefaultAsync(x => x.Email == email);
+                var user = await usercontext.User.FirstOrDefaultAsync(x => x.ID == id);
                 if (user != null)
                 {
                     //Delete that User
@@ -65,16 +65,16 @@ namespace UserCreation.project.Repository
         {
             if (usercontext != null)
             {
-                return await usercontext.City.ToListAsync();
+               return await usercontext.City.ToListAsync();
             }
             return null;
         }
 
-        public async Task<User> GetUserByEmail(string email)
+        public async Task<User> GetUserById(int id)
         {
             if (usercontext != null)
             {
-                return await usercontext.User.FirstOrDefaultAsync(x => x.Email == email);
+                return await usercontext.User.FirstOrDefaultAsync(x => x.ID == id);
             }
             return null;
         }

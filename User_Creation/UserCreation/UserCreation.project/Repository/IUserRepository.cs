@@ -12,11 +12,11 @@ namespace UserCreation.project.Repository
         Task<List<State>> GetAllStates();
         Task<List<City>> GetAllCities();
 
-        Task<User> GetUserByEmail(string email );
+        Task<User> GetUserById(int id );
 
         Task<int> AddUserAsync(User user);
 
-        Task DeleteUser(string email);
+        Task DeleteUser(int id);
 
         Task UpdateUser(User user);
     }

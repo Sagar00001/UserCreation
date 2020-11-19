@@ -22,7 +22,7 @@ namespace UserCreation.project.Data
             modelBuilder.Entity<City>()
                 .HasOne<State>(c => c.State)
                 .WithMany(s => s.City)
-                .HasForeignKey(s => s.CityName);
+                .HasForeignKey(s => s.StateID);
 
         }
 

@@ -30,14 +30,10 @@ namespace UserCreation.project.Controllers
         }
 
         // GET: User/Details/5
-        public async Task<IActionResult> GetUserByEmail(string email)
+        public async Task<IActionResult> GetUserById(int id)
         {
-            if (email == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _unitOfWork.userRepository.GetUserByEmail(email);
+            
+            var user = await _unitOfWork.userRepository.GetUserById(id);
             if (user == null)
             {
                 return NotFound();
@@ -49,8 +45,13 @@ namespace UserCreation.project.Controllers
         // GET: User/Create
         public async Task<IActionResult> AddUSerAsync()
         {
-            ViewBag.States = new SelectList(await _unitOfWork.userRepository.GetAllStates(), "StateName", "StateName");
-            ViewBag.Cities = new SelectList(await _unitOfWork.userRepository.GetAllCities(), "StateName", "StateName");
+            
+           // State st = new State();
+            //List<State> States = await _unitOfWork.userRepository.GetAllStates();
+            ViewBag.States = new SelectList(await _unitOfWork.userRepository.GetAllStates(), "StateID", "StateName");
+            ViewBag.Cities = new SelectList(await _unitOfWork.userRepository.GetAllCities(), "CityID", "CityName");
+            //List<City> Cities = await _unitOfWork.userRepository.GetAllCities();
+            //ViewBag.Cities = new SelectList(Cities.Where(x => x.StateID == StateID));
             return View();
         }
 
@@ -74,11 +75,11 @@ namespace UserCreation.project.Controllers
         }
 
         // GET: User/Edit/5
-        public async Task<IActionResult> UpdateUser(string email)
+        public async Task<IActionResult> UpdateUser(int id)
         {
             try
             {
-                var user = await _unitOfWork.userRepository.GetUserByEmail(email);
+                var user = await _unitOfWork.userRepository.GetUserById(id);
                 //_unitOfWork.Commit();
                 return View(user);
             }
@@ -94,9 +95,9 @@ namespace UserCreation.project.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateUser(string id, [Bind("Name,Address,Email,Phone,State,City,Pincode")] User user)
+        public async Task<IActionResult> UpdateUser(int id, [Bind("Name,Address,Email,Phone,State,City,Pincode")] User user)
         {
-            if (id != user.Email)
+            if (id != user.ID)
             {
                 return NotFound();
             }
@@ -110,7 +111,7 @@ namespace UserCreation.project.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Email))
+                    if (!UserExists(user.ID))
                     {
                         return NotFound();
                     }
@@ -125,11 +126,11 @@ namespace UserCreation.project.Controllers
         }
 
         // GET: User/Delete/5
-        public async Task<IActionResult> DeleteUser(string email)
+        public async Task<IActionResult> DeleteUser(int id)
         {
             try
             {
-                await _unitOfWork.userRepository.DeleteUser(email);
+                await _unitOfWork.userRepository.DeleteUser(id);
                 _unitOfWork.Commit();
 
                 return RedirectToAction(nameof(GetAllUsers));
@@ -143,9 +144,9 @@ namespace UserCreation.project.Controllers
 
 
 
-        private bool UserExists(string email)
+        private bool UserExists(int id)
         {
-            var user = _unitOfWork.userRepository.GetUserByEmail(email);
+            var user = _unitOfWork.userRepository.GetUserById(id);
 
             if (user != null)
                 return true;

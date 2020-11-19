@@ -10,20 +10,24 @@ namespace UserCreation.project.Migrations
                 name: "State",
                 columns: table => new
                 {
-                    StateName = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    StateID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StateName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_State", x => x.StateName);
+                    table.PrimaryKey("PK_State", x => x.StateID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -31,25 +35,33 @@ namespace UserCreation.project.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Email);
+                    table.PrimaryKey("PK_User", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "City",
                 columns: table => new
                 {
-                    CityName = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    CityID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StateID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_City", x => x.CityName);
+                    table.PrimaryKey("PK_City", x => x.CityID);
                     table.ForeignKey(
-                        name: "FK_City_State_CityName",
-                        column: x => x.CityName,
+                        name: "FK_City_State_StateID",
+                        column: x => x.StateID,
                         principalTable: "State",
-                        principalColumn: "StateName",
+                        principalColumn: "StateID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_City_StateID",
+                table: "City",
+                column: "StateID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

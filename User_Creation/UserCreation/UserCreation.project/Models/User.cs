@@ -8,13 +8,15 @@ namespace UserCreation.project.Models
 {
     public class User
     {
+        [Key]  
+        public int ID { get; set; }
+
         [DataType(DataType.Text)]
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
-        [Key]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

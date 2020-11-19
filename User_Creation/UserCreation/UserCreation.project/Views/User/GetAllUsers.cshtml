@@ -62,9 +62,9 @@
                     @Html.DisplayFor(modelItem => item.Pincode)
                 </td>
                 <td>
-                    <a asp-action="UpdateUser" asp-route-id="@item.Email.ToString()" class="btn btn-outline-primary"><i class="fa fa-marker fa-lg"></i>Edit</a>
+                    <a asp-action="UpdateUser" asp-route-id="@item.ID" class="btn btn-outline-primary"><i class="fa fa-marker fa-lg"></i>Edit</a>
 
-                    <a asp-action="DeleteUser" asp-route-id="@item.Email.ToString()" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
+                    <a asp-action="DeleteUser" asp-route-id="@item.ID" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
                 </td>
             </tr>
         }
