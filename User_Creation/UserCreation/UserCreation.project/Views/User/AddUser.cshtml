@@ -100,7 +100,7 @@
         var pincode = $("#Pincode").val();
 
         var createemp = { "Name": name, "Address": address, "Email": email, "Phone": phone, "State": state, "City": city, "Pincode": pincode }
-        $.post('https://localhost:44398//User/AddUser', createemp, function (data) {
+        $.post('https://localhost:44398/User/AddUser', createemp, function (data) {
             if (data == 0) {
                 location: location.href;
             }

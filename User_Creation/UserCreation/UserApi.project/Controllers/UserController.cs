@@ -27,6 +27,7 @@ namespace UserApi.project.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
+
         public async Task<IEnumerable<User>> GetAllUsers()
         {
             return await _unitOfWork.userRepository.GetAllUsers();
@@ -60,11 +61,12 @@ namespace UserApi.project.Controllers
             return list;
         }
 
-        // POST: User/Create
+        // POST: User/AddUSer
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("[AddUSer]")]
         public async Task<IActionResult> AddUSer([Bind("Name,Address,Email,Phone,State,City,Pincode")] User model)
         {
             User user = new User();
@@ -115,7 +117,8 @@ namespace UserApi.project.Controllers
             return View(user);
         }
 
-        // GET: User/Delete/5
+        [HttpPost]
+        [Route("[DeleteUser]")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             try
