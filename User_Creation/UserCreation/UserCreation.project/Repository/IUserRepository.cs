@@ -10,7 +10,7 @@ namespace UserCreation.project.Repository
     {
         Task<List<User>> GetAllUsers();
         Task<List<State>> GetAllStates();
-        Task<List<City>> GetAllCities();
+        List<City> GetAllCities(int StateID);
 
         Task<User> GetUserById(int id );
 

@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\User_Creation",
-    "\\User_Creation\\UserCreation"
+    "\\User_Creation\\UserCreation",
+    "\\User_Creation\\UserCreation\\UserCreation.project"
   ],
+  "SelectedNode": "\\User_Creation\\UserCreation\\UserCreation.project\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

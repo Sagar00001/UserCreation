@@ -49,30 +49,13 @@ namespace UserCreation.project.Controllers
            // State st = new State();
             //List<State> States = await _unitOfWork.userRepository.GetAllStates();
             ViewBag.States = new SelectList(await _unitOfWork.userRepository.GetAllStates(), "StateID", "StateName");
-            ViewBag.Cities = new SelectList(await _unitOfWork.userRepository.GetAllCities(), "CityID", "CityName");
-            //List<City> Cities = await _unitOfWork.userRepository.GetAllCities();
-            //ViewBag.Cities = new SelectList(Cities.Where(x => x.StateID == StateID));
+          
+        
             return View();
         }
 
-        // POST: User/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUSer([Bind("Name,Address,Email,Phone,State,City,Pincode")] User model)
-        {
-            User user = new User();
-            user.Name = model.Name; ;
-            user.Address = model.Address;
-            user.Email = model.Email;
-            user.Phone = model.Phone;
-            user.State = model.State;
-            user.City = model.City;
-            user.Pincode = model.Pincode;
-            await  _unitOfWork.userRepository.AddUserAsync(user);
-            return RedirectToAction("GetAllUsers");
-        }
+        
+
 
         // GET: User/Edit/5
         public async Task<IActionResult> UpdateUser(int id)
@@ -93,57 +76,7 @@ namespace UserCreation.project.Controllers
         // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateUser(int id, [Bind("Name,Address,Email,Phone,State,City,Pincode")] User user)
-        {
-            if (id != user.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _unitOfWork.userRepository.UpdateUser(user);
-                    _unitOfWork.Commit();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserExists(user.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(GetAllUsers));
-            }
-            return View(user);
-        }
-
-        // GET: User/Delete/5
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            try
-            {
-                await _unitOfWork.userRepository.DeleteUser(id);
-                _unitOfWork.Commit();
-
-                return RedirectToAction(nameof(GetAllUsers));
-            }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                return RedirectToAction(nameof(GetAllUsers));
-            }
-        }
-
-
-
+       
         private bool UserExists(int id)
         {
             var user = _unitOfWork.userRepository.GetUserById(id);

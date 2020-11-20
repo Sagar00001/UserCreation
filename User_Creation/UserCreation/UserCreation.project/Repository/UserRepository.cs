@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserCreation.project.Data;
 using UserCreation.project.Models;
+
 
 namespace UserCreation.project.Repository
 {
@@ -61,11 +63,13 @@ namespace UserCreation.project.Repository
             return null;
         }
 
-        public async Task<List<City>> GetAllCities()
+        public List<City> GetAllCities(int StateID)
         {
             if (usercontext != null)
             {
-               return await usercontext.City.ToListAsync();
+                var list = usercontext.City.Where(x => x.StateID == StateID).ToList();
+                return list;
+                
             }
             return null;
         }

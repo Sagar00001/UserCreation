@@ -64,9 +64,31 @@
                 <td>
                     <a asp-action="UpdateUser" asp-route-id="@item.ID" class="btn btn-outline-primary"><i class="fa fa-marker fa-lg"></i>Edit</a>
 
-                    <a asp-action="DeleteUser" asp-route-id="@item.ID" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
+                    <input type="button" value="Delete" id="Del" class="btn btn-primary" onclick="Delete(@item.ID)" />
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script type="text/javascript">
+
+    function Delete(id) {
+       
+        if (confirm("Are you sure you want to delete?"))
+        {
+            var userid = id;
+            $.ajax({
+                url: 'https://localhost:44398//User/DeleteUser?id='+userid,
+                type: 'Delete',
+                data: userid,
+                success: function (data, textstatus, xhr) {
+                    alert("Record inserted successfully.....");
+                },
+                error: function (xhr, textstatus, errorThrown) {
+                    console.log('Error in operation');
+                }
+            });
+        }
+    }
+</script>
