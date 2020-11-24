@@ -8994,11 +8994,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
+      "projectUniqueName": "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
       "projectName": "UserCreation.project",
-      "projectPath": "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
+      "projectPath": "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
       "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
-      "outputPath": "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\obj\\",
+      "outputPath": "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
