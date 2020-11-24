@@ -93,7 +93,7 @@
             var userid = id;
             $.ajax({
                 url: 'https://localhost:5001/api/User/DeleteUser?id='+ userid,
-                type: 'POST',
+                type: 'Delete',
                 data: userid,
                 success: function (data, textstatus, xhr) {
                     alert("Record inserted successfully.....");
