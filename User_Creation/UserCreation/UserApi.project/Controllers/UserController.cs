@@ -25,7 +25,7 @@ namespace UserApi.project.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/<UserController>
+        // GET: api/<UserController>/GetAllUsers
         [HttpGet]
 
         public async Task<IEnumerable<User>> GetAllUsers()
@@ -34,6 +34,7 @@ namespace UserApi.project.Controllers
         }
 
         // GET: api/<UserController>/5
+        [HttpGet("{id}")]
         public async Task<User> GetUserById(int id)
         {
             
@@ -42,18 +43,8 @@ namespace UserApi.project.Controllers
             return user;
         }
 
-        // GET: User/Create
-        public async void AddUSerAsync()
-        {
-            
-           // State st = new State();
-            //List<State> States = await _unitOfWork.userRepository.GetAllStates();
-            ViewBag.States = new SelectList(await _unitOfWork.userRepository.GetAllStates(), "StateID", "StateName");
-            
         
-           
-        }
-
+        [HttpGet("StateID")]
         public List<City> GetCityList(int StateID)
         {
             var list = _unitOfWork.userRepository.GetAllCities(StateID);
@@ -61,13 +52,11 @@ namespace UserApi.project.Controllers
             return list;
         }
 
-        // POST: User/AddUSer
+        // POST api/<UserController>/AddUser
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[AddUSer]")]
-        public async Task<IActionResult> AddUSer([Bind("Name,Address,Email,Phone,State,City,Pincode")] User model)
+        [HttpPost] 
+        public async Task<IActionResult> AddUser([Bind("Name,Address,Email,Phone,State,City,Pincode")] User model)
         {
             User user = new User();
             user.Name = model.Name; ;
@@ -81,8 +70,8 @@ namespace UserApi.project.Controllers
             return RedirectToAction("GetAllUsers");
         }
 
-      
-        // POST: User/Edit/5
+
+        // POST: User/UpdateUser/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,8 +106,9 @@ namespace UserApi.project.Controllers
             return View(user);
         }
 
-        [HttpPost]
-        [Route("[DeleteUser]")]
+
+        // DELETE api/<UserController>/5
+        [HttpDelete("id")]       
         public async Task<IActionResult> DeleteUser(int id)
         {
             try

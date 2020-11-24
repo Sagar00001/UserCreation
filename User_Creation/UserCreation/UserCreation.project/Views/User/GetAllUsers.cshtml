@@ -3,35 +3,39 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
 <h1>User details</h1>
 
 <p>
     <a asp-action="AddUser" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Create new</a>
+    <input type="text" id="input" placeholder="Search"/> <button onclick="return search()">Search</button>
 </p>
-<table class="table">
+<table class="table" id="Mytable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+                Phone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.State)
+                State
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City)
+                City
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pincode)
+                Pincode
             </th>
             <th></th>
         </tr>
@@ -40,27 +44,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.State)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pincode)
-                </td>
+               
                 <td>
                     <a asp-action="UpdateUser" asp-route-id="@item.ID" class="btn btn-outline-primary"><i class="fa fa-marker fa-lg"></i>Edit</a>
 
@@ -73,13 +57,41 @@
 
 <script type="text/javascript">
 
+    $(document).ready(function () {
+        $('#Mytable').DataTable({
+            "ajax": {
+                "url": "https://localhost:5001/api/User",
+                "type": "GET"
+            },
+            "columns": [
+                { "data": "Name" },
+                { "data": "Address" },
+                { "data": "Email" },
+                { "data": "Phone" },
+                { "data": "State" },
+                { "data": "City" }
+            ]
+
+        });
+
+        function search() {
+            var table = $("#Mytable").DataTable();
+            $('#input').on('keyup', function () {
+                table.search(this.value).draw();
+            });
+        }
+        
+    });
+    
+
+    
+
     function Delete(id) {
-       
-        if (confirm("Are you sure you want to delete?"))
-        {
+
+        if (confirm("Are you sure you want to delete?")) {
             var userid = id;
             $.ajax({
-                url: 'https://localhost:44398/User/DeleteUser?id='+userid,
+                url: 'https://localhost:5001/api/User/DeleteUser?id='+ userid,
                 type: 'POST',
                 data: userid,
                 success: function (data, textstatus, xhr) {

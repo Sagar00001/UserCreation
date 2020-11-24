@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj": {}
+    "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj": {
+    "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
+        "projectUniqueName": "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
         "projectName": "UserCreation.project",
-        "projectPath": "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
+        "projectPath": "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\UserCreation.project.csproj",
         "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sagar\\Desktop\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\obj\\",
+        "outputPath": "D:\\TCS\\DotNet\\DotNet Projects\\UserCreation\\User_Creation\\UserCreation\\UserCreation.project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
